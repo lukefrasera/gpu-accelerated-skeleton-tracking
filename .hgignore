@@ -10,4 +10,4 @@ syntax: glob
 *.snm
 *.backup
 *.toc
-
+*.fdb_latexmk
