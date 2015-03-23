@@ -64,7 +64,6 @@
 
 
 \begin{document}
-%
 
 \title{GPU Accelerated Skeleton Tracking From a single Depth Image}
 
@@ -98,14 +97,15 @@ Lee Barford\IEEEauthorrefmark{4}}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
+sf
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
-Skeleton tracking is a very useful tool in many fields of computer science. whether in human computer interaction, computer vision, robotics, graphics, and more, skeleton tracking plays an important role. A lot of work has been done on implementations of skeleton tracking \cite{Ganapathi2010,Bleiweiss2009,Baak2011,Plagemann2010,Knoop2009}. There are a number of methods used for performing skeleton tracking(TODO: CITATIONS). The methods can be broken down into several groups:(TODO: List groups). The most notable method is the data driven\cite{Baak2011}(TODO: cite microsoft and other data driven methods).
+Skeleton tracking is a very useful tool in many fields of computer science. whether in human computer interaction, computer vision, robotics, graphics, and etc, skeleton tracking plays an important role in understanding human actions and behvaiors. A lot of work has been done on the implementation of skeleton tracking \cite{Ganapathi2010,Bleiweiss2009,Baak2011,Plagemann2010,Knoop2009}. The methods can be broken down into several groups:(TODO: List groups). The most notable method is the data driven\cite{Baak2011}(TODO: cite microsoft and other data driven methods).
 
-Data driven methods have produced robust real-time solutions to skeleton tracking. (TODO: micosoft) produced a data driven method by training against a large set of pose data sets. The model was built from a very large data set of different people in different poses with a priori joint location information. Most data driven methods build an database of poses to compare against and then lookup the position of the current pose from the database at runtime. This allows the for low computation and quick convergence onto a solution for a given pose. However, data driven approaches rely on the a database that is complete. If the user moves into a pose that is not in the database then the system will fail.
+Data driven methods have produced robust real-time solutions to skeleton tracking\cite{Baak2011}. (TODO: Microsoft) produced a data driven method by training against a large set of a priori pose sets. The model was built from a very large data set of different people in different poses with a priori joint location information. Most data driven methods build a database of poses to compare against and then lookup the position of the current pose from the database at runtime. This allows the for low computation and quick convergence onto a solution for a given pose. However, data driven approaches rely on the a database that is complete. If the user moves into a pose that is not in the database then the system will fail.
 
 
 
