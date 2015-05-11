@@ -1,128 +1,67 @@
 \documentclass[conference]{IEEEtran}
-
 \usepackage{cite}
-
-% *** GRAPHICS RELATED PACKAGES ***
-%
 \ifCLASSINFOpdf
   \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
   \graphicspath{{images/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
   \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
   \graphicspath{{images/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
 \fi
-
-% *** MATH PACKAGES ***
-%
 \usepackage[cmex10]{amsmath}
-% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
 \interdisplaylinepenalty=2500
-
-% *** SPECIALIZED LIST PACKAGES ***
-%
 \usepackage{algorithmic}
-
-
-% *** ALIGNMENT PACKAGES ***
-%
 \usepackage{array}
-
-% *** SUBFIGURE PACKAGES ***
 \ifCLASSOPTIONcompsoc
  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
 \else
  \usepackage[caption=false,font=footnotesize]{subfig}
 \fi
-
-% *** FLOAT PACKAGES ***
-%
 \usepackage{fixltx2e}
-
-
 %\usepackage{stfloats}
 %\fnbelowfloat
 % \usepackage{dblfloatfix}
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
 \usepackage{url}
 
-% correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
 
 \begin{document}
 
 \title{GPU Accelerated Skeleton Tracking From a single Depth Image}
 
+\author{\IEEEauthorblockN{
+  Luke Fraser\IEEEauthorrefmark{1},
+  Monica Nicolescu\IEEEauthorrefmark{2}, 
+  Freddrick Harris\IEEEauthorrefmark{3},
+  Lee Barford\IEEEauthorrefmark{4}}
+}
 
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-% \author{\IEEEauthorblockN{Luke Fraser}
-% \IEEEauthorblockA{Computer Science Department\\
-% University of Nevada, Reno\\
-% Email: Fraser@Nevada.unr.edu}
-% \and
-% \IEEEauthorblockN{Monica Nicolescu}
-% \IEEEauthorblockA{Computer Science Department\\
-% University of Nevada, Reno\\
-% Email: monica@cse.unr.edu}
-% \and
-% \IEEEauthorblockN{Freddrick Harris}
-% \IEEEauthorblockA{Computer Science Department\\
-% University of Nevada, Reno\\
-% Email: fredh@cse.unr.edu}}
-
-\author{\IEEEauthorblockN{Luke Fraser\IEEEauthorrefmark{1},
-Monica Nicolescu\IEEEauthorrefmark{2}, 
-Freddrick Harris\IEEEauthorrefmark{3},
-Lee Barford\IEEEauthorrefmark{4}}}
-
-% make the title area
 \maketitle
 
-% As a general rule, do not put math, special symbols or citations
-% in the abstract
 \begin{abstract}
-sf
+Skeleton tracking is an important component of robotics. Receiving high frequency and precise pose estimates from a person are useful when a robot interacts with a person. Knowing where a person allows for more accurate real-time planning. In this paper we present a skeleton tracking algorithm that provides accurate high resolution pose estimations in real-time. This is achieved by using the GPU to take some of the load off of the CPU.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
-Skeleton tracking is a very useful tool in many fields of computer science. whether in human computer interaction, computer vision, robotics, graphics, and etc, skeleton tracking plays an important role in understanding human actions and behvaiors. A lot of work has been done on the implementation of skeleton tracking \cite{Ganapathi2010,Bleiweiss2009,Baak2011,Plagemann2010,Knoop2009}. The methods can be broken down into several groups:(TODO: List groups). The most notable method is the data driven\cite{Baak2011}(TODO: cite microsoft and other data driven methods).
+Skeleton tracking is a very useful tool in many fields of computer science. whether in human computer interaction, computer vision, robotics, graphics, and etc, skeleton tracking plays an important role in understanding human actions and behaviors. A lot of work has been done on the implementation of skeleton tracking \cite{Ganapathi2010,Bleiweiss2009,Baak2011,Plagemann2010,Knoop2009}. The methods can be broken down into several groups:(TODO: List groups). The most notable method is the data driven\cite{Baak2011}(TODO: cite microsoft and other data driven methods).
 
 Data driven methods have produced robust real-time solutions to skeleton tracking\cite{Baak2011}. (TODO: Microsoft) produced a data driven method by training against a large set of a priori pose sets. The model was built from a very large data set of different people in different poses with a priori joint location information. Most data driven methods build a database of poses to compare against and then lookup the position of the current pose from the database at runtime. This allows the for low computation and quick convergence onto a solution for a given pose. However, data driven approaches rely on the a database that is complete. If the user moves into a pose that is not in the database then the system will fail.
 
-
+ 
 
 In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4000. 60 fps is a good rate for real-time robotics applications. This would provide the speed necessary for real-time robotic intent recognition. However, this speed was achieved at low resolutions where the number of pixels in the depth image are manageable.
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
+
+\section{Related Work}
+\label{sec:relatedwork}
+
+\section{Methods}
+\label{sec:method}
+
+\section{Conclusion}
+\label{sec:clonclusion}
+
+
 %\begin{figure}[!t]
 %\centering
 %\includegraphics[width=2.5in]{myfigure}
@@ -133,18 +72,6 @@ In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4
 %\label{fig_sim}
 %\end{figure}
 
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
-
-
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command,
-% and the \label for the overall figure must come after \caption.
-% \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a 
-% line do not exceed the text width or a line break will occur.
-%
 %\begin{figure*}[!t]
 %\centering
 %\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
@@ -155,25 +82,7 @@ In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4
 %\caption{Simulation results for the network.}
 %\label{fig_sim}
 %\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
-% labels, the optional argument to \subfloat must be present. If a
-% subcaption is not desired, just leave its contents blank,
-% e.g., \subfloat[].
 
-
-% An example of a floating table. Note that, for IEEE style tables, the
-% \caption command should come BEFORE the table and, given that table
-% captions serve much like titles, are usually capitalized except for words
-% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
-% and up, which are usually not capitalized unless they are the first or
-% last word of the caption. Table text will default to \footnotesize as
-% IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
 %\begin{table}[!t]
 %% increase table row spacing, adjust to taste
 %\renewcommand{\arraystretch}{1.3}
