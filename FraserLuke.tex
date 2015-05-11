@@ -38,17 +38,26 @@
 \maketitle
 
 \begin{abstract}
-Skeleton tracking is an important component of robotics. Receiving high frequency and precise pose estimates from a person are useful when a robot interacts with a person. Knowing where a person allows for more accurate real-time planning. In this paper we present a skeleton tracking algorithm that provides accurate high resolution pose estimations in real-time. This is achieved by using the GPU to take some of the load off of the CPU.
+Skeleton tracking is an important component of robotics. Receiving high frequency and precise pose estimates from a person are useful when a robot interacts with a person. Knowing where a person allows for more accurate real-time planning. In this paper we present a skeleton tracking algorithm that provides accurate high resolution pose estimations in real-time. This is achieved through the use of the GPU as a GPGPU(General Purpose Graphics Processing Unit). With the GPU performing the majority of the computation the CPU can attend to other tasks.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
 
 \section{Introduction}
-Skeleton tracking is a very useful tool in many fields of computer science. whether in human computer interaction, computer vision, robotics, graphics, and etc, skeleton tracking plays an important role in understanding human actions and behaviors. A lot of work has been done on the implementation of skeleton tracking \cite{Ganapathi2010,Bleiweiss2009,Baak2011,Plagemann2010,Knoop2009}. The methods can be broken down into several groups:(TODO: List groups). The most notable method is the data driven\cite{Baak2011}(TODO: cite microsoft and other data driven methods).
+\label{sec:intro}
+Skeleton tracking is a very useful tool in many fields of computer science. Whether in human computer interaction, computer vision, robotics, graphics, and etc, skeleton tracking plays an important role in understanding human actions and behaviors. A lot of work has been done on the implementation of skeleton tracking \cite{Ganapathi2010,Bleiweiss2009,Baak2011,Plagemann2010,Knoop2009}. The methods can be broken down into several groups:(TODO: List groups). The most notable method is the data driven\cite{Baak2011,export:145347}(TODO: other data driven methods). It has had the most success and has produced the most robust trackers.
 
-Data driven methods have produced robust real-time solutions to skeleton tracking\cite{Baak2011}. (TODO: Microsoft) produced a data driven method by training against a large set of a priori pose sets. The model was built from a very large data set of different people in different poses with a priori joint location information. Most data driven methods build a database of poses to compare against and then lookup the position of the current pose from the database at runtime. This allows the for low computation and quick convergence onto a solution for a given pose. However, data driven approaches rely on the a database that is complete. If the user moves into a pose that is not in the database then the system will fail.
+\subsection{Skeleton Tracking}
+\label{subsec:skel}
+Data driven methods have produced robust real-time solutions to skeleton tracking\cite{Baak2011}. These approaches either train a classifier or validate against a large dataset of poses.(TODO: Microsoft) produced a data driven method by training against a large set of a priori pose sets. The model was built from a very large data set of different people in different poses with a priori joint location information. Most data driven methods build a database of poses to compare against and then lookup the position of the current pose from the database at runtime. This allows the for low computation and quick convergence onto a solution for a given pose. However, data driven approaches rely on the a database that is complete. If the user moves into a pose that is not in the database then the system will fail.
 
 In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4000. 60 fps is a good rate for real-time robotics applications. This would provide the speed necessary for real-time robotic intent recognition. However, this speed was achieved at low resolutions where the number of pixels in the depth image are manageable. 
+
+\subsection{Cuda GPU Model}
+\label{subsec:cudaModel}
+General Purpose programming on a Graphics processing unit (GPGPU) is a method of using the graphics pipeline of a GPU to massively parallelize standard algorithms. The graphics pipeline of a computer is inherently parallel and GPU is optimized to function for this purpose. Converting algorithms from the CPU model to the GPGPU is a non-trivial problem. The GPU model provides many challenges and limitations on the programmer. The GPU has far less memory than the CPU and as well it becomes very obvious early on that the performance of the GPU is very sensitive. It is important to manage operations carefully to make sure that the GPU's parallelism isn't lost. The GPU is very good at parallel task, but does not perform sequential operations well.
+
+
 
 \section{Related Work}
 \label{sec:relatedwork}
@@ -101,18 +110,7 @@ In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4
 %\end{table}
 
 
-
-\section{Conclusion}
-The conclusion goes here.
-
-\section*{Acknowledgment}
-
-
-The authors would like to thank...
-
-
-
-
+% \section*{Acknowledgment}
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
