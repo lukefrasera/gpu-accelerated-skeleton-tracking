@@ -48,9 +48,7 @@ Skeleton tracking is a very useful tool in many fields of computer science. whet
 
 Data driven methods have produced robust real-time solutions to skeleton tracking\cite{Baak2011}. (TODO: Microsoft) produced a data driven method by training against a large set of a priori pose sets. The model was built from a very large data set of different people in different poses with a priori joint location information. Most data driven methods build a database of poses to compare against and then lookup the position of the current pose from the database at runtime. This allows the for low computation and quick convergence onto a solution for a given pose. However, data driven approaches rely on the a database that is complete. If the user moves into a pose that is not in the database then the system will fail.
 
- 
-
-In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4000. 60 fps is a good rate for real-time robotics applications. This would provide the speed necessary for real-time robotic intent recognition. However, this speed was achieved at low resolutions where the number of pixels in the depth image are manageable.
+In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4000. 60 fps is a good rate for real-time robotics applications. This would provide the speed necessary for real-time robotic intent recognition. However, this speed was achieved at low resolutions where the number of pixels in the depth image are manageable. 
 
 \section{Related Work}
 \label{sec:relatedwork}
@@ -126,6 +124,6 @@ The authors would like to thank...
 
 \bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{IEEEabrv,../refs/master}
+\bibliography{IEEEabrv,refs/master}
 
 \end{document}
