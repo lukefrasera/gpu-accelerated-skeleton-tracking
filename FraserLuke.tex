@@ -55,10 +55,23 @@ In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4
 
 \subsection{Cuda GPU Model}
 \label{subsec:cudaModel}
-General Purpose programming on a Graphics processing unit (GPGPU) is a method of using the graphics pipeline of a GPU to massively parallelize standard algorithms. The graphics pipeline of a computer is inherently parallel and GPU is optimized to function for this purpose. Converting algorithms from the CPU model to the GPGPU is a non-trivial problem. The GPU model provides many challenges and limitations on the programmer. The GPU has far less memory than the CPU and as well it becomes very obvious early on that the performance of the GPU is very sensitive. It is important to manage operations carefully to make sure that the GPU's parallelism isn't lost. The GPU is very good at parallel task, but does not perform sequential operations well.
+General Purpose programming on a Graphics processing unit (GPGPU) is a method of using the graphics pipeline of a GPU to massively parallelize standard algorithms. The graphics pipeline of a computer is inherently parallel and GPU is optimized to function for this purpose. Converting algorithms from the CPU model to the GPGPU is a non-trivial problem. The GPU model provides many challenges and limitations on the programmer. The GPU has far less memory than the CPU and as well it becomes very obvious early on that the performance of the GPU is very sensitive. It is important to manage operations carefully to make sure that the GPU's parallelism isn't lost. The GPU is very good at parallel task, but does not perform sequential operations well as is far slower than a CPU.
 
+\paragraph{The CUDA Programming Model} CUDA is defined by Nvidia\texttrademark, a GPU manufacturer(TODO: cite Nvidia). They have developed a general purpose programming model and language to implement programs on their GPU's. The programming model is described in detail here (TODO cite nvidia programming guide). 
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{grid-of-thread-blocks}
+\caption{CUDA Thread model with grid and block structure containers.}
+\label{fig:gridthreadblocks}
+\end{figure}
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{memory-hierarchy}
+\caption{CUDA memory hierarchy.}
+\label{fig:memoryhierarchy}
+\end{figure}
 \section{Related Work}
 \label{sec:relatedwork}
 
