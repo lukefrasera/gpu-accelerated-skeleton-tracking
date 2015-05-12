@@ -57,14 +57,22 @@ In \cite{Baak2011} the authors were able to achieve 60 fps on the Swiss-Ranger 4
 \label{subsec:cudaModel}
 General Purpose programming on a Graphics processing unit (GPGPU) is a method of using the graphics pipeline of a GPU to massively parallelize standard algorithms. The graphics pipeline of a computer is inherently parallel and GPU is optimized to function for this purpose. Converting algorithms from the CPU model to the GPGPU is a non-trivial problem. The GPU model provides many challenges and limitations on the programmer. The GPU has far less memory than the CPU and as well it becomes very obvious early on that the performance of the GPU is very sensitive. It is important to manage operations carefully to make sure that the GPU's parallelism isn't lost. The GPU is very good at parallel task, but does not perform sequential operations well as is far slower than a CPU.
 
-\paragraph{The CUDA Programming Model} CUDA is defined by Nvidia\texttrademark, a GPU manufacturer(TODO: cite Nvidia). They have developed a general purpose programming model and language to implement programs on their GPU's. The programming model is described in detail here (TODO cite nvidia programming guide). 
-
 \begin{figure}[!t]
 \centering
 \includegraphics[width=2.5in]{grid-of-thread-blocks}
 \caption{CUDA Thread model with grid and block structure containers.}
 \label{fig:gridthreadblocks}
 \end{figure}
+\subsubsection{The CUDA Programming Model}
+CUDA is defined by Nvidia\texttrademark, a GPU manufacturer\cite{Nvidia2014}. They have developed a general purpose programming model and language to implement programs on their GPU's. The programming model is described in detail in \cite{Nvidia2014}. A general outline of the CUDA model and programming paradigm will be outlined here.
+
+The CUDA programming language is similar to C/C++ and much of the syntax is exactly the same. In fact the GCC compiler is called by the NVCC compiler to build a program. Central to programming for an Nvidia GPU is understanding how a CUDA kernel is executed. A host-machine executes the main program on the CPU and then makes kernel call request to the GPU which then runs the kernel on the GPU. Kernel calls are asynchronous operations and do not stall the CPU program from running. The host machine program can then perform memory transfers from the GPU to pass information back and forth between the CPU and GPU.
+
+CUDA breaks down kernel function execution with 3 structuring elements, Grids, Blocks, and Threads. Threads are the element that executes a kernel function. Each thread executes the kernel function independently of the others. A thread has its own memory to store local variables. A block is a container for threads. A single block will have many threads that execute a given kernel function. Blocks as well have memory that all of their threads have access to. This memory is called shared memory and is only accessible to a blocks threads. A grid is a container for blocks. Unlike threads there is no shared memory between blocks of threads there is only global memory. This means that a thread of one block does not know anything about a thread of a different block. This is a critical issue that requires consideration when implementing an algorithm. Figure~\ref{fig:gridthreadblocks} shows the organization of threads, blocks, and grids.
+
+
+\subsubsection{The CUDA Memory Hierarchy}
+CUDA also employs a specific memory model on the kernel functions that execute on the GPU. Each thread has a small amount of local memory that it can use. As well each block has shared memory that all of its threads can access together. Grids all have access to the global memory of the GPU. The speed of the different types of memory is critical to the speed of a given algorithm on the GPU. Local memory is the fastest followed by block shared memory and then global memory. Figure~\ref{fig:memoryhierarchy} shows the accesses and structure of the GPU memory.
 
 \begin{figure}[!t]
 \centering
@@ -72,9 +80,11 @@ General Purpose programming on a Graphics processing unit (GPGPU) is a method of
 \caption{CUDA memory hierarchy.}
 \label{fig:memoryhierarchy}
 \end{figure}
+
 \section{Related Work}
 \label{sec:relatedwork}
 
+In the remaining sections a description of the methods developed for skeleton tracking will be discussed. As well a discussion of the results will be presented. The conclusion will list future work as well as the short comings of the project.
 \section{Methods}
 \label{sec:method}
 
